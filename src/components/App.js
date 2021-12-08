@@ -1,22 +1,33 @@
+import React, { Component, Fragment } from 'react'
+// import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { handleInitialData, receiveUsersToLogin } from '../actions/shared'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Login from './Login'
+
+
+class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(handleInitialData())
+    // this.props.dispatch(receiveUsersToLogin())
+  }
+
+  render() {
+    return (
+      <div>
+        {this.props.authentificatedUser
+          ? <Login />
+          : <div>Starter page</div>
+        }
+      </div>
+    )
+  }
 }
 
-export default App;
+function mapStateToProps({ authedUser }) {
+  return {
+    authentificatedUser: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App)
