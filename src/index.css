@@ -39,9 +39,64 @@ a {
   border-width: 2px;
 }
 
-.center {
-  text-align: center;
+.ans-unans-toggle{
+background-color: #82c9f8;
+text-align: center;
 }
+
+.main{
+margin: auto;
+width: 40%;
+background-color: #d8e7f1;
+}
+
+.question-preview-card{
+  background-color: #f1d8d8;
+  height: 120px;
+  border: 3px solid green;
+}
+.question-preview-card-header{
+text-align: center;
+}
+.question-preview-card-body{
+display: flex;
+flex-direction: row;
+}
+.question-preview-card-avatar{
+background-color: aqua;
+width: 25%;
+}
+.question-preview-card-info{
+background-color: beige;
+width: 75%;
+}
+
+
+.leaderboard-card{
+  background-color: #f1d8d8;
+  height: 120px;
+  border: 3px solid green;
+}
+.leaderboard-card-header{
+text-align: center;
+}
+.leaderboard-card-body{
+display: flex;
+flex-direction: row;
+}
+.leaderboard-card-avatar{
+background-color: aqua;
+width: 25%;
+}
+.leaderboard-card-info{
+background-color: beige;
+width: 50%;
+}
+.leaderboard-card-score{
+background-color: rgb(245, 245, 140);
+width: 25%;
+}
+
 
 .active {
   font-weight: bold;

@@ -30,56 +30,69 @@ class HomePollList extends React.Component {
     render() {
         return (
             <div>
-                <button
-                    disabled={this.state.questionType === 'unanswered'}
-                    onClick={this.handleUnansweredClick}
-                >
-                    Unanswered Questions
-                </button>
-                <button
-                    disabled={this.state.questionType === 'answered'}
-                    onClick={this.handleAnsweredClick}
-                >
-                    Answered Questions
-                </button>
-                {this.state.questionType === 'unanswered'
-                    ? <div>
+                <div className='ans-unans-toggle'>
+                    <button
+                        disabled={this.state.questionType === 'unanswered'}
+                        onClick={this.handleUnansweredClick}
+                    >
                         Unanswered Questions
-                    </div>
-                    : <div>
+                    </button>
+                    <button
+                        disabled={this.state.questionType === 'answered'}
+                        onClick={this.handleAnsweredClick}
+                    >
                         Answered Questions
-                    </div>
-                }
-                <ul>
+                    </button>
                     {this.state.questionType === 'unanswered'
-                        ?
-                        this.props.unansweredQuestions.map((unansQ) => (
-                            <li key={unansQ.id}>
-                                <QuestionPreviewCard question={unansQ} />
-                            </li>
-                        ))
-
-                        :
-                        this.props.answeredQuestions.map((ansQ) => (
-                            <li key={ansQ.id}>
-                                <QuestionPreviewCard question={ansQ} />
-                            </li>
-                        ))
-
+                        ? <div>
+                            Unanswered Questions
+                        </div>
+                        : <div>
+                            Answered Questions
+                        </div>
                     }
-                </ul>
-            </div >
+                </div>
+                <div>
+                    <ul>
+                        {this.state.questionType === 'unanswered'
+                            ?
+                            this.props.unansweredQuestions.map((unansQ) => (
+                                <li key={unansQ.id}>
+                                    <QuestionPreviewCard question={unansQ} />
+                                </li>
+                            ))
+
+                            :
+                            this.props.answeredQuestions.map((ansQ) => (
+                                <li key={ansQ.id}>
+                                    <QuestionPreviewCard question={ansQ} />
+                                </li>
+                            ))
+
+                        }
+                    </ul>
+                </div >
+            </div>
         )
     }
 }
 
 function mapStateToProps({ users, questions, authedUser }) {
+    var answeredQuestions = Object.values(questions)
+        .filter((question) => (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)))
+    answeredQuestions = answeredQuestions.sort((a, b) => b.timestamp - a.timestamp);
+    // console.log('answeredQuestions: ', answeredQuestions);
+
+    var unAnsweredQuestions = Object.values(questions)
+        .filter((question) => (!question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser)))
+    unAnsweredQuestions = unAnsweredQuestions.sort((a, b) => b.timestamp - a.timestamp);
+
     return {
         loading: Object.keys(users).length === 0,
         authedUserId: authedUser,
         // answeredQuestions: Object.values(questions)
-        answeredQuestions: Object.values(questions).filter((question) => (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser))),
-        unansweredQuestions: Object.values(questions).filter((question) => (!question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser)))
+        answeredQuestions: answeredQuestions,
+        unansweredQuestions: unAnsweredQuestions
     }
 }
 
