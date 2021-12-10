@@ -1,27 +1,92 @@
 import React from 'react'
-// import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { handleInitialData, receiveUsersToLogin } from '../actions/shared'
+import { handleAddQuestion } from '../actions/shared'
 
 class Poll extends React.Component {
-    // componentDidMount() {
-    // this.props.dispatch(handleInitialData())
-    // this.props.dispatch(receiveUsersToLogin())
-    // }
+
+    state = {
+        optionOneText: '',
+        optionTwoText: ''
+    }
+
+    handleChangeOptionOneText = (e) => {
+        const text = e.target.value;
+        this.setState({
+            optionOneText: text
+        })
+    }
+
+    handleChangeOptionTwoText = (e) => {
+        const text = e.target.value;
+        this.setState({
+            optionTwoText: text
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const optionOneText = this.state.optionOneText;
+        const optionTwoText = this.state.optionTwoText;
+        const authedUserId = this.state.authedUserId;
+        // console.group('ADD NEW QUESTION');
+        // console.log('Aythor: ', authedUserId);
+        // console.log('Option one: ', optionOneText);
+        // console.log('Option two: ', optionTwoText);
+        // console.groupEnd();
+
+        this.props.dispatch(handleAddQuestion(optionOneText, optionTwoText))
+
+        this.setState({
+            optionOneText: '',
+            optionTwoText: ''
+        })
+    }
 
     render() {
+        const { optionOneText, optionTwoText } = this.state;
         return (
             <div>
-                There is New Poll page. You're authorized
-            </div >
+                <div className='new-q-header'>
+                    <strong>Create New Question</strong>
+                </div >
+                <div className='new-q-body'>
+                    Complete the question
+                    <form
+                        className='new-q-form'
+                        onSubmit={this.handleSubmit}
+                    >
+                        <input
+                            type='text'
+                            placeholder='Option One'
+                            value={optionOneText}
+                            onChange={this.handleChangeOptionOneText}
+                            className='option-input'
+                        />
+                        <input
+                            type='text'
+                            placeholder='Option Two'
+                            value={optionTwoText}
+                            onChange={this.handleChangeOptionTwoText}
+                            className='option-input'
+                        />
+                        <button
+                            className='btn'
+                            type='submit'
+                            disabled={optionOneText === '' || optionTwoText === ''}
+                        >
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
         )
     }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ authedUser }) {
     return {
-        loading: Object.keys(users).length === 0
+        authedUserId: authedUser,
     }
 }
 

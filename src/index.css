@@ -50,6 +50,7 @@ width: 40%;
 background-color: #d8e7f1;
 }
 
+
 .question-preview-card{
   background-color: #f1d8d8;
   height: 120px;
@@ -67,6 +68,28 @@ background-color: aqua;
 width: 25%;
 }
 .question-preview-card-info{
+background-color: beige;
+width: 75%;
+}
+
+
+.poll-card{
+  background-color: #f1d8d8;
+  /* height: 120px; */
+  border: 3px solid green;
+}
+.poll-card-header{
+text-align: center;
+}
+.poll-card-body{
+display: flex;
+flex-direction: row;
+}
+.poll-card-avatar{
+background-color: aqua;
+width: 25%;
+}
+.poll-card-info{
 background-color: beige;
 width: 75%;
 }
@@ -95,6 +118,24 @@ width: 50%;
 .leaderboard-card-score{
 background-color: rgb(245, 245, 140);
 width: 25%;
+}
+
+.new-q-header{
+text-align: center;
+}
+.new-q-body{
+background-color: coral;
+padding: 15px;
+}
+.new-q-form{
+display: flex;
+  flex-direction: column;
+}
+.option-input{
+margin-top: 5px;
+margin-bottom: 5px;
+padding-top: 5px;
+padding-bottom: 5px;
 }
 
 
