@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { handleAddQuestionAnswer } from '../actions/shared'
+
 class UnAnsweredQuestion extends React.Component {
 
     state = {
@@ -20,16 +22,18 @@ class UnAnsweredQuestion extends React.Component {
 
     handleSubmitAnswer = (e) => {
         e.preventDefault();
-        console.group('QUESTION ANSWER');
-        console.log('user id: ', this.props.you);
-        console.log('chosen: ', this.state.option);
-        console.groupEnd();
+        const question_id = this.props.question.id;
+        const option = this.state.option;
+        const userId = this.props.you
+
+        this.props.dispatch(handleAddQuestionAnswer(question_id, option, userId))
     }
 
     render() {
-        const { question, you } = this.props;
+        const { question } = this.props;
         return (
             <div className='poll-card-info'>
+                Would you rather...
                 <form onSubmit={this.handleSubmitAnswer}>
                     <input
                         type="radio"

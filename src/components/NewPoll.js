@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 import { handleAddQuestion } from '../actions/shared'
 
@@ -7,7 +8,8 @@ class Poll extends React.Component {
 
     state = {
         optionOneText: '',
-        optionTwoText: ''
+        optionTwoText: '',
+        toHome: false
     }
 
     handleChangeOptionOneText = (e) => {
@@ -28,23 +30,24 @@ class Poll extends React.Component {
         e.preventDefault();
         const optionOneText = this.state.optionOneText;
         const optionTwoText = this.state.optionTwoText;
-        const authedUserId = this.state.authedUserId;
-        // console.group('ADD NEW QUESTION');
-        // console.log('Aythor: ', authedUserId);
-        // console.log('Option one: ', optionOneText);
-        // console.log('Option two: ', optionTwoText);
-        // console.groupEnd();
 
         this.props.dispatch(handleAddQuestion(optionOneText, optionTwoText))
 
         this.setState({
             optionOneText: '',
-            optionTwoText: ''
-        })
+            optionTwoText: '',
+            toHome: true
+        });
+
     }
 
     render() {
-        const { optionOneText, optionTwoText } = this.state;
+        const { optionOneText, optionTwoText, toHome } = this.state;
+
+        if (toHome === true) {
+            return <Redirect to='/' />
+        }
+
         return (
             <div>
                 <div className='new-q-header'>
@@ -52,6 +55,8 @@ class Poll extends React.Component {
                 </div >
                 <div className='new-q-body'>
                     Complete the question
+                    <br></br>
+                    Would you rather...
                     <form
                         className='new-q-form'
                         onSubmit={this.handleSubmit}

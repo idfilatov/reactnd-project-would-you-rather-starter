@@ -1,32 +1,20 @@
 import React from 'react'
-import { NavLink, Navigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { setAuthedUser } from '../actions/authedUser'
 
 class Nav extends React.Component {
-    // componentDidMount() {
-    // this.props.dispatch(handleInitialData())
-    // this.props.dispatch(receiveUsersToLogin())
-    // }
 
     handleLogOut = () => {
         this.props.dispatch(setAuthedUser(null));
-        // <Navigate to='/' />;
-        // this.props.history.push('/');
     }
 
     render() {
 
-        console.log('NotAuthentificatedUser from Nav: ', this.props.NotAuthentificatedUser);
-
         const authedUserId = this.props.authedUserId;
-
-
         const currentUser = !this.props.NotAuthentificatedUser &&
             Object.values(this.props.users).filter((user) => user.id === authedUserId)[0];
-
-        console.log('currentUser.avatarURL: ', currentUser.avatarURL);
 
         return (
             <nav className='nav'>
@@ -66,10 +54,8 @@ class Nav extends React.Component {
                             </NavLink>
 
                         }
-
                     </li>
                 </ul>
-
             </nav>
         )
     }

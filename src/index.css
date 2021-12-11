@@ -10,121 +10,63 @@ a {
   color: #252525;
 }
 
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 10px;
-}
-
-.btn {
-  text-transform: uppercase;
-  margin: 35px auto;
-  padding: 10px;
-  border: 1px solid rgba(0,0,0,.29);
-  cursor: pointer;
-  background: #fff;
-  font-size: 16px;
-  width: 250px;
-  position: relative;
-}
-
-.btn:hover {
-  border-color: rgba(0,0,0,.5);
-  text-decoration: none;
-}
-
-.btn:focus {
-  outline: 0;
-  font-weight: 700;
-  border-width: 2px;
-}
 
 .ans-unans-toggle{
-background-color: #82c9f8;
-text-align: center;
+  text-align: center;
 }
 
 .main{
-margin: auto;
-width: 40%;
-background-color: #d8e7f1;
+  background-color: #eeecec;
+  margin: auto;
+  width: 30%;
 }
 
 
-.question-preview-card{
-  background-color: #f1d8d8;
-  height: 120px;
-  border: 3px solid green;
+.card{
+  border: 3px solid rgb(0, 119, 128);
 }
-.question-preview-card-header{
-text-align: center;
+.card-header{
+  background-color: #dad7d7;
+  text-align: center;
 }
-.question-preview-card-body{
-display: flex;
-flex-direction: row;
+.card-body{
+  display: flex;
+  flex-direction: row;
 }
-.question-preview-card-avatar{
-background-color: aqua;
-width: 25%;
+.card-avatar{
+  width: 25%;
 }
+
+
 .question-preview-card-info{
-background-color: beige;
 width: 75%;
 }
 
 
-.poll-card{
-  background-color: #f1d8d8;
-  /* height: 120px; */
-  border: 3px solid green;
-}
-.poll-card-header{
-text-align: center;
-}
-.poll-card-body{
-display: flex;
-flex-direction: row;
-}
-.poll-card-avatar{
-background-color: aqua;
-width: 25%;
-}
 .poll-card-info{
-background-color: beige;
 width: 75%;
 }
 
 
-.leaderboard-card{
-  background-color: #f1d8d8;
-  height: 120px;
-  border: 3px solid green;
-}
-.leaderboard-card-header{
-text-align: center;
-}
-.leaderboard-card-body{
-display: flex;
-flex-direction: row;
-}
-.leaderboard-card-avatar{
-background-color: aqua;
-width: 25%;
-}
 .leaderboard-card-info{
-background-color: beige;
 width: 50%;
 }
+
 .leaderboard-card-score{
 background-color: rgb(245, 245, 140);
 width: 25%;
 }
 
+.answered-stats{
+  padding: 10px
+}
+
+
 .new-q-header{
 text-align: center;
 }
 .new-q-body{
-background-color: coral;
+background-color: #eeecec;
 padding: 15px;
 }
 .new-q-form{
@@ -144,9 +86,11 @@ padding-bottom: 5px;
 }
 
 .nav {
+height: 150px;
 background-color: #dad7d7;
 display: flex;
 flex-direction: row;
+align-items: center;
 justify-content: center;
 }
 
@@ -159,6 +103,13 @@ justify-content: center;
 
 .nav li:first-child {
   padding-left: 0;
+
+}
+.nav li{
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
 }
 
 ul {
@@ -177,78 +128,6 @@ li {
   margin: 10px;
 }
 
-.tweet {
-  width: 100%;
-  max-width: 590px;
-  padding: 10px;
-  display: flex;
-  margin: 0 auto;
-  border: 1px solid #dad7d7;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.tweet-info {
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Hacky but less typing in the video */
-.tweet-info > div > span:first-child {
-  font-weight: bold;
-  margin-right: 5px;
-}
-.tweet-info > div > span:nth-child(2) {
-  color: #969696;
-  font-size: 16px;
-}
-.tweet-info > div > div {
-  color: #969696;
-  font-size: 15px;
-}
-.tweet-info > div > p {
-  font-size: 18px;
-  margin: 10px 0;
-}
-.tweet-icons {
-  display: flex;
-  align-items: center;
-}
-.tweet-icons > span {
-  color: #969696;
-  margin: 0 15px 0 5px;
-  font-size: 18px !important;
-}
-.tweet-icon {
-  font-size: 27px;
-  color: #697784;
-}
-.tweet-icon:hover {
-  color: #00b5d6;
-  cursor: pointer;
-}
-.replying-to {
-  border: none;
-  background: transparent;
-  margin: 0;
-  padding: 0;
-  color: #969696;
-  cursor: pointer;
-}
-
-.heart-button {
-  background: transparent;
-  border: none;
-}
-
-.new-tweet {
-  width: 100%;
-  max-width: 590px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
 
 .textarea {
   border-radius: 4px;
@@ -256,11 +135,4 @@ li {
   padding: 10px;
   font-size: 15px;
   height: 100px;
-}
-
-.tweet-length {
-  text-align: right;
-  margin-top: 10px;
-  font-size: 20px;
-  color: #C3392A;
 }

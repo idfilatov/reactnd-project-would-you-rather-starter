@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 
 class QuestionPreviewCard extends React.Component {
@@ -19,13 +19,11 @@ class QuestionPreviewCard extends React.Component {
 
         const question_raw_timestamp = question.timestamp;
         const datetime = String(new Date(question_raw_timestamp)).split('GMT')[0];
-        // console.log('question_raw_timestamp: ', question_raw_timestamp);
-        // console.log('datetime: ', datetime);
 
         return (
-            <div className='question-preview-card'>
-                <div className='question-preview-card-header'>At {datetime} {authorObject.name} asks:</div>
-                <div className='question-preview-card-body'>
+            <div className='card'>
+                <div className='card-header'>At {datetime} {authorObject.name} asks:</div>
+                <div className='card-body'>
                     <div className='question-preview-card-avatar'>
                         <img src={authorObject.avatarURL} width={100} alt='avatar' />
                     </div>
@@ -40,9 +38,6 @@ class QuestionPreviewCard extends React.Component {
                     </div>
 
                 </div>
-
-
-
             </div>
         )
     }

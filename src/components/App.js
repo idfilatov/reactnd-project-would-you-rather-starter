@@ -15,7 +15,6 @@ import Nav from './Nav'
 class App extends Component {
     componentDidMount() {
         this.props.dispatch(handleInitialData())
-        // this.props.dispatch(receiveUsersToLogin())
     }
 
     render() {

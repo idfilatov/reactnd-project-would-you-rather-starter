@@ -5,11 +5,6 @@ import QuestionPreviewCard from './QuestionPreviewCard';
 
 
 class HomePollList extends React.Component {
-    componentDidMount() {
-        console.log('HomePollList just mounted');
-        console.log('answeredQuestions: ', this.props.answeredQuestions);
-        console.log('unansweredQuestions: ', this.props.unansweredQuestions);
-    }
 
     state = {
         questionType: 'unanswered'
@@ -43,11 +38,14 @@ class HomePollList extends React.Component {
                     >
                         Answered Questions
                     </button>
+
                     {this.state.questionType === 'unanswered'
                         ? <div>
+                            <br></br>
                             Unanswered Questions
                         </div>
                         : <div>
+                            <br></br>
                             Answered Questions
                         </div>
                     }
@@ -81,7 +79,6 @@ function mapStateToProps({ users, questions, authedUser }) {
     var answeredQuestions = Object.values(questions)
         .filter((question) => (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)))
     answeredQuestions = answeredQuestions.sort((a, b) => b.timestamp - a.timestamp);
-    // console.log('answeredQuestions: ', answeredQuestions);
 
     var unAnsweredQuestions = Object.values(questions)
         .filter((question) => (!question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser)))
@@ -90,7 +87,6 @@ function mapStateToProps({ users, questions, authedUser }) {
     return {
         loading: Object.keys(users).length === 0,
         authedUserId: authedUser,
-        // answeredQuestions: Object.values(questions)
         answeredQuestions: answeredQuestions,
         unansweredQuestions: unAnsweredQuestions
     }

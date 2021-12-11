@@ -1,34 +1,25 @@
 import React, { Component } from 'react'
-// import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { setAuthedUser } from '../actions/authedUser'
 
 class Login extends Component {
-    // componentDidMount() {
-    // this.props.dispatch(handleInitialData())
-    // this.props.dispatch(receiveUsersToLogin())
-    // }
-
 
     handleLoginButton = () => {
         const chosenUserName = document.getElementById('selectUser').value;
         const chosenUserId = this.props.usersToLogin.filter((user) => user.name === chosenUserName)[0].id;
-        console.log('chosenUser: ', chosenUserName, chosenUserId);
         this.props.dispatch(setAuthedUser(chosenUserId));
     }
 
     render() {
         const usersToLogin = this.props.usersToLogin;
-        console.log('usersToLogin len: ', usersToLogin.length);
-        console.log('usersToLogin: ', usersToLogin);
+
         return (
             <div>
                 {
                     this.props.loading
-                        ? null : <div>
-                            There is no authed user.Login page
-                            < br ></br >
+                        ? null
+                        : <div className='main'>
                             Choose user.
                             < select id='selectUser'> {
                                 usersToLogin !== {} &&
